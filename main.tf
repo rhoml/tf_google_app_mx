@@ -1,10 +1,4 @@
-resource "cloudflare_record" "google_domain_cname" {
-    domain = "${var.domain_name}"
-    name = "mail"
-    value = "ghs.google.com"
-    type = "CNAME"
-    ttl = "${var.domain_ttl}"
-}
+# Adds google required MX records
 
 resource "cloudflare_record" "mx1" {
     domain = "${var.domain_name}"
@@ -59,5 +53,40 @@ resource "cloudflare_record" "email_txt" {
     name = "${var.domain_name}"
     value = "${var.domain_security}"
     type = "TXT"
+    ttl = "${var.domain_ttl}"
+}
+
+# If you want to have custom URL for Google services
+#   https://admin.google.com/YOUR_DOMAIN_HERE/AdminHome#CompanyProfile:flyout=customUrl
+
+resource "cloudflare_record" "custom_calendar_url" {
+    domain = "${var.domain_name}"
+    name = "${var.custom_calendar_url}"
+    value = "ghs.google.com"
+    type = "CNAME"
+    ttl = "${var.domain_ttl}"
+}
+
+resource "cloudflare_record" "custom_gmail_url" {
+    domain = "${var.domain_name}"
+    name = "${var.custom_gmail_url}"
+    value = "ghs.google.com"
+    type = "CNAME"
+    ttl = "${var.domain_ttl}"
+}
+
+resource "cloudflare_record" "custom_drive_url" {
+    domain = "${var.domain_name}"
+    name = "${var.custom_drive_url}"
+    value = "ghs.google.com"
+    type = "CNAME"
+    ttl = "${var.domain_ttl}"
+}
+
+resource "cloudflare_record" "custom_sites_url" {
+    domain = "${var.domain_name}"
+    name = "${var.custom_sites_url}"
+    value = "ghs.google.com"
+    type = "CNAME"
     ttl = "${var.domain_ttl}"
 }
