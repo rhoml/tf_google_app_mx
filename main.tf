@@ -48,13 +48,21 @@ resource "cloudflare_record" "email_spf" {
     ttl = "${var.domain_ttl}"
 }
 
-resource "cloudflare_record" "email_txt" {
+resource "cloudflare_record" "authenticity_check_txt" {
     domain = "${var.domain_name}"
-    name = "${var.domain_name}"
-    value = "${var.domain_security}"
+    name = "google_auth_validation_txt"
+    value = "${var.google_authenticity_dns_check}"
     type = "TXT"
     ttl = "${var.domain_ttl}"
 }
+
+resource "cloudflare_record" "email_txt" {
+     domain = "${var.domain_name}"
+     name = "google_dns_txt"
+     value = "${var.domain_security}"
+     type = "TXT"
+     ttl = "${var.domain_ttl}"
+ }
 
 # If you want to have custom URL for Google services
 #   https://admin.google.com/YOUR_DOMAIN_HERE/AdminHome#CompanyProfile:flyout=customUrl
