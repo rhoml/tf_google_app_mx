@@ -8,6 +8,8 @@ variable "domain_security" {
   default = "v=spf1 include:_spf.google.com ~all"
 }
 
+variable "google_authenticity_dns_check" {}
+
 # If you want to have custom URL for Google services
 #   https://admin.google.com/YOUR_DOMAIN_HERE/AdminHome#CompanyProfile:flyout=customUrl
 variable "custom_calendar_url" {
